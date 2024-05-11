@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BugMovement : MonoBehaviour
+public class BugMovement2 : MonoBehaviour
 {
     public GameObject bug;
     public AudioSource[] FXSound;
@@ -26,7 +26,7 @@ public class BugMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!negate && !GlobalVar.gamePause && !GlobalVar.gameOver)
+        if (!negate && !GlobalVar.gamePause)
         {
             Vector3 direction = (target.position - transform.position).normalized;
             bug.transform.Translate(direction * speed * Time.deltaTime);
@@ -38,7 +38,7 @@ public class BugMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("khoa"))
         {
             hitFX.Play();
-            GlobalVar.playerHP -= 10;
+            GlobalVar.playerHP -= 30;
             Destroy(bug.gameObject);
         }
         if (collision.gameObject.CompareTag("player"))
@@ -47,7 +47,7 @@ public class BugMovement : MonoBehaviour
             {
                 hurtFX.Play();
                 pointStop = true;
-                GlobalVar.gamePoint += 10;
+                GlobalVar.gamePoint += 20;
             }
             negate = true;
             StartCoroutine(DelayDestroy());

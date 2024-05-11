@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GlobalVar : MonoBehaviour
 {
@@ -20,12 +21,12 @@ public class GlobalVar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameOver)
+        if (playerHP < 0)
         {
-            Debug.Log("End");
+            playerHP = 0;
         }
 
-        hpText.text = "HP: " + GlobalVar.playerHP + "/100";
-        pointText.text = "Point: " + GlobalVar.gamePoint;
+        hpText.text = "HP: " + playerHP + "/100";
+        pointText.text = "Point: " + gamePoint;
     }
 }

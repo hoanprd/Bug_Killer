@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject pausePanel;
+    public GameObject pausePanel, endGamePanel;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,13 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GlobalVar.playerHP <= 0)
+        {
+            GlobalVar.gameOver = true;
+            endGamePanel.SetActive(true);
+            Debug.Log("End");
+            StartCoroutine(DelayEndGame());
+        }
     }
 
     public void PauseButtonPress()
@@ -33,6 +39,12 @@ public class GameController : MonoBehaviour
 
     public void BackToMenuButtonPress()
     {
+        SceneManager.LoadScene("Menu");
+    }
+
+    IEnumerator DelayEndGame()
+    {
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("Menu");
     }
 }
