@@ -42,6 +42,18 @@ public class MenuController : MonoBehaviour
         Application.Quit();
     }
 
+    public void ChangeScreenRESFull()
+    {
+        Resolution resolution = Screen.currentResolution;
+
+        Screen.SetResolution(resolution.width, resolution.height, true);
+    }
+
+    public void ChangeScreenRESWin()
+    {
+        Screen.SetResolution(1280, 720, false);
+    }
+
     public void CloseSettingPress()
     {
         clickFX.Play();
